@@ -7,18 +7,14 @@
 
 import UIKit
 
-struct Person {
-    let name: String
-}
-
-class ViewController: UIViewController {
+class PersonFollowViewController: UIViewController {
 
     private var models = [Person]()
-    
+
     private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self,
-                       forCellReuseIdentifier: "cell")
+        table.register(PersonFollowTableViewCell.self,
+                       forCellReuseIdentifier: PersonFollowTableViewCell.indentifier)
         table.dataSource = self
         return table
     }()
@@ -53,15 +49,27 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension PersonFollowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = model.name
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: PersonFollowTableViewCell.indentifier,
+            for: indexPath
+        ) as? PersonFollowTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: PersonFollowTableViewCellViewModel(with: model))
+        cell.delegate = self
         return cell
+    }
+}
+
+extension PersonFollowViewController: PersonFollowTableViewCellDelegate {
+    func personFollowTableViewCellDelegate(_ cell: PersonFollowTableViewCell,
+                                           didTapWith viewModel: PersonFollowTableViewCellViewModel) {
     }
 }
