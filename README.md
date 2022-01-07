@@ -14,7 +14,8 @@ App iOS desenvolvido em swift para uso da arqutetura MVVM e estudos da linguagem
 
 ## 📌 Versão
 
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto). 
+Foi utilizado para desenvolvimento desse app um mac na versão macOS Big Sur 11.6.1. 
+Xcode versão 13.2.1
 
 ## ✒️ Autor
 
